@@ -42,24 +42,6 @@ target_sources( ${PROJECT_NAME}
 
 
 ####################################################################
-# Configure build
-####################################################################
-
-if( NOT WINDOWS_VS )
-    target_compile_options( ${PROJECT_NAME}
-        PRIVATE
-            -Wall -Wextra -Wpedantic -Werror
-    )
-
-else()
-    target_compile_options( ${PROJECT_NAME}
-        PRIVATE
-            -W4 -WX
-    )
-
-endif()
-
-####################################################################
 # Additional properties
 ####################################################################
 

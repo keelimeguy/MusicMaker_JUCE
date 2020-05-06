@@ -6,10 +6,10 @@ First, setup "PreLoad.cmake" to your liking..
 
 Then for each case, run:
 
-### Release
-- `cmake -S . -B Release`
-- `cmake --build Release`
-
 ### Debug
-- `cmake -S . -B Debug -DCMAKE_BUILD_TYPE=Debug`
+- `cmake -S . -B Debug`
 - `cmake --build Debug`
+
+### Release
+- `cmake -S . -B Release -DCMAKE_BUILD_TYPE=Release`
+- `cmake --build Release`

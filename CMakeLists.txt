@@ -7,21 +7,23 @@ cmake_minimum_required( VERSION 3.17.2 )
 
 project( AudioProject )
 
-set_property( GLOBAL PROPERTY USE_FOLDERS ON )
+set( CMAKE_CXX_STANDARD 17 )
 
-if( CMAKE_GENERATOR MATCHES "Visual Studio*" )
-    option( WINDOWS_VS "Using Windows Visual Studio" ON )
+if( MSVC )
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /WX" )
 else()
-    option( WINDOWS_VS "Using Windows Visual Studio" OFF )
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic -Werror" )
     set( CMAKE_EXPORT_COMPILE_COMMANDS ON )
 endif()
+
+set_property( GLOBAL PROPERTY USE_FOLDERS ON )
 
 set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib ) # Output directory for static lib (.LIB) (.A)
 set( CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin ) # Output directory for shared lib (.DLL)
 set( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin ) # Output directory for executables (.EXE)
 
 if( NOT CMAKE_BUILD_TYPE )
-    set ( CMAKE_BUILD_TYPE Release )
+    set ( CMAKE_BUILD_TYPE Debug )
 endif()
 
 
@@ -36,7 +38,7 @@ include( build_project_main.cmake )
 # Additional setup for Visual Studio
 ####################################################################
 
-if( WINDOWS_VS )
+if( MSVC )
     set_directory_properties( PROPERTIES
         VS_STARTUP_PROJECT main
     )
