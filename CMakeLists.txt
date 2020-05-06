@@ -5,6 +5,8 @@ cmake_minimum_required( VERSION 3.17.2 )
 # Define meta info
 ####################################################################
 
+project( AudioProject )
+
 set_property( GLOBAL PROPERTY USE_FOLDERS ON )
 
 if( CMAKE_GENERATOR MATCHES "Visual Studio*" )
