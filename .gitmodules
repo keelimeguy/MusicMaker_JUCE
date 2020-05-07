@@ -1,0 +1,8 @@
+[submodule "vendor/JUCE/FRUT"]
+	path = vendor/JUCE/FRUT
+	url = git@github.com:McMartin/FRUT.git
+	ignore = dirty
+[submodule "vendor/JUCE/JUCE"]
+	path = vendor/JUCE/JUCE
+	url = git@github.com:juce-framework/JUCE.git
+    ignore = dirty
