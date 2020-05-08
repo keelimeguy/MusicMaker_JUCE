@@ -38,6 +38,7 @@ message( STATUS "CMAKE_INSTALL_PREFIX is set to: ${CMAKE_INSTALL_PREFIX}" )
 ####################################################################
 
 add_subdirectory( vendor )
+include( build_project_main.cmake )
 
 if( VENDOR_BUILD_DEMORUNNER )
     build_demorunner()
