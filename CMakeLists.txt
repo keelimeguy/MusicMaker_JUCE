@@ -2,6 +2,16 @@ cmake_minimum_required( VERSION 3.17.2 )
 
 
 ####################################################################
+# User options
+####################################################################
+
+# Set defaults:
+option( AUTO_BUILD_FRUT "Build the FRUT sub-repository automatically" ON )
+option( VENDOR_BUILD_DEMORUNNER "Build the DemoRunner example JUCE project" OFF )
+option( USE_DEMORUNNER_BIGOBJ_FIX "Add big-obj flags to fix large file errors in DemoRunner" ON )
+
+
+####################################################################
 # Define meta info
 ####################################################################
 
@@ -33,6 +43,11 @@ if( VENDOR_BUILD_DEMORUNNER )
     build_demorunner()
 endif()
 
+add_custom_target( distclean
+    COMMAND echo "try running:   rm -r ${CMAKE_BINARY_DIR}"
+    COMMAND echo "               rm -r ${CMAKE_CURRENT_LIST_DIR}/install"
+    DEPENDS clean_juce
+)
 
 ####################################################################
 # Additional setup for Visual Studio
