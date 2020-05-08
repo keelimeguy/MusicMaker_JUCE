@@ -1,15 +1,16 @@
 # Audio Project
 
-## Command line
+## System
+Tested on:
+- Windows 10.0.18362 with MSVC 19.13.26128.0
 
+## Usage
 First, setup "PreLoad.cmake" to your liking..
 
-Then for each case, run:
+Then run, for either Debug or Release, using:
+- `cmake -S . -B build [-DVENDOR_BUILD_DEMORUNNER=1]`
+- `cmake --build build --config <Debug|Release> --target install`
 
-### Debug
-- `cmake -S . -B Debug`
-- `cmake --build Debug`
+Add the `VENDOR_BUILD_DEMORUNNER` flag only if you wish for the DemoRunner example JUCE project to be compiled.
 
-### Release
-- `cmake -S . -B Release -DCMAKE_BUILD_TYPE=Release`
-- `cmake --build Release`
+Installed files will appear in the "install/" subdirectory.
