@@ -15,7 +15,7 @@ option( USE_DEMORUNNER_BIGOBJ_FIX "Add big-obj flags to fix large file errors in
 # Define meta info
 ####################################################################
 
-project( AudioProject )
+project( MusicMaker )
 
 set( CMAKE_CXX_STANDARD 17 )
 

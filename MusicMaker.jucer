@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT name="AudioProject" projectType="consoleapp" version="0.0.0"
-              bundleIdentifier="com.keelimeguy.audioproject"
-              companyName="" companyCopyright="" companyWebsite="" companyEmail=""
+<JUCERPROJECT name="MusicMaker" projectType="consoleapp" version="0.0.0"
+              bundleIdentifier="com.keelimeguy.musicmaker"
+              companyName="" companyCopyright="" companyWebsite="https://github.com/keelimeguy/MusicMaker_JUCE" companyEmail=""
               id="project_id" defines=""
               jucerVersion="5.4.7" reportAppUsage="0">
-  <MAINGROUP id="maingroup_id" name="AudioProject">
+  <MAINGROUP id="maingroup_id" name="MusicMaker">
     <GROUP id="{00000000-0000-0000-0000-000000000000}" name="src">
       <FILE id="maincpp_id" name="main.cpp" compile="1" resource="0" file="src/main.cpp"/>
     </GROUP>
@@ -14,29 +14,29 @@
     <LINUX_MAKE targetFolder="Builds/LinuxMakefile" smallIcon="" bigIcon=""
                 extraCompilerFlags="-Wall -Werror">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" optimisation="0" targetName="AudioProject"/>
-        <CONFIGURATION isDebug="0" name="Release" optimisation="3" targetName="AudioProject"/>
+        <CONFIGURATION isDebug="1" name="Debug" optimisation="0" targetName="MusicMaker"/>
+        <CONFIGURATION isDebug="0" name="Release" optimisation="3" targetName="MusicMaker"/>
       </CONFIGURATIONS>
     </LINUX_MAKE>
     <VS2015 targetFolder="Builds/VisualStudio2015" smallIcon="" bigIcon=""
             extraCompilerFlags="/W4 /WX">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" optimisation="0" targetName="AudioProject"/>
-        <CONFIGURATION isDebug="0" name="Release" optimisation="3" useRuntimeLibDLL="0" targetName="AudioProject"/>
+        <CONFIGURATION isDebug="1" name="Debug" optimisation="0" targetName="MusicMaker"/>
+        <CONFIGURATION isDebug="0" name="Release" optimisation="3" useRuntimeLibDLL="0" targetName="MusicMaker"/>
       </CONFIGURATIONS>
     </VS2015>
     <VS2017 targetFolder="Builds/VisualStudio2017" smallIcon="" bigIcon=""
             extraCompilerFlags="/W4 /WX">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" optimisation="0" targetName="AudioProject"/>
-        <CONFIGURATION isDebug="0" name="Release" optimisation="3" useRuntimeLibDLL="0" targetName="AudioProject"/>
+        <CONFIGURATION isDebug="1" name="Debug" optimisation="0" targetName="MusicMaker"/>
+        <CONFIGURATION isDebug="0" name="Release" optimisation="3" useRuntimeLibDLL="0" targetName="MusicMaker"/>
       </CONFIGURATIONS>
     </VS2017>
     <VS2019 targetFolder="Builds/VisualStudio2019" smallIcon="" bigIcon=""
             extraCompilerFlags="/W4 /WX">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" optimisation="0" targetName="AudioProject"/>
-        <CONFIGURATION isDebug="0" name="Release" optimisation="3" useRuntimeLibDLL="0" targetName="AudioProject"/>
+        <CONFIGURATION isDebug="1" name="Debug" optimisation="0" targetName="MusicMaker"/>
+        <CONFIGURATION isDebug="0" name="Release" optimisation="3" useRuntimeLibDLL="0" targetName="MusicMaker"/>
       </CONFIGURATIONS>
     </VS2019>
   </EXPORTFORMATS>
