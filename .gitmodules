@@ -5,4 +5,7 @@
 [submodule "vendor/JUCE/JUCE"]
 	path = vendor/JUCE/JUCE
 	url = git@github.com:juce-framework/JUCE.git
-    ignore = dirty
+	ignore = dirty
+[submodule "vendor/spdlog/spdlog"]
+	path = vendor/spdlog/spdlog
+	url = git@github.com:gabime/spdlog.git

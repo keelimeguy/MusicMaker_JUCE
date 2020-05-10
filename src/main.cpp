@@ -1,6 +1,15 @@
-#include <iostream>
+#include "Logger.h"
+
+#include "sound/AudioPlayer.h"
+#include "theory/Pitch.h"
 
 int main() {
-    std::cout << "Hello, world!" << std::endl;
+    Logger::Init();
+
+    AudioPlayer *player = new AudioPlayer();
+    player->play_pitch(new Pitch(Note::C, 7));
+
+    system("pause");
+
     return 0;
 }
