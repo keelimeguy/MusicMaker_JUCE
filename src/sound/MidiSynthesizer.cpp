@@ -1,8 +1,8 @@
 #include "MidiSynthesizer.h"
 #include "Logger.h"
 
-MidiSynthesizer::MidiSynthesizer()
-    : synthAudioSource(keyboardState) {
+MidiSynthesizer::MidiSynthesizer(int numVoices)
+    : numVoices(numVoices), synthAudioSource(keyboardState, numVoices) {
     auto xml = juce::parseXML("<DEVICESETUP deviceType=\"DirectSound\" audioOutputDeviceName=\"Primary Sound Driver\"/>");
     setAudioChannels(0, 2, xml.get());
 
@@ -11,11 +11,6 @@ MidiSynthesizer::MidiSynthesizer()
 
 MidiSynthesizer::~MidiSynthesizer() {
     shutdownAudio();
-    releaseResources();
-}
-
-juce::MidiKeyboardState *MidiSynthesizer::getMidiState() {
-    return &keyboardState;
 }
 
 void MidiSynthesizer::prepareToPlay(int samplesPerBlockExpected, double sampleRate) {

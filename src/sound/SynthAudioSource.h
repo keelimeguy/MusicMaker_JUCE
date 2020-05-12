@@ -4,7 +4,7 @@
 
 class SynthAudioSource : public juce::AudioSource {
 public:
-    SynthAudioSource(juce::MidiKeyboardState &keyState);
+    SynthAudioSource(juce::MidiKeyboardState &keyState, int numVoices);
     ~SynthAudioSource() override;
 
     void prepareToPlay(int samplesPerBlockExpected, double sampleRate) override;

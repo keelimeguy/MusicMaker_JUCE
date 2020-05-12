@@ -4,7 +4,9 @@
 
 #include <iostream>
 #include <cstdint>
+#include <chrono>
 #include <memory>
+#include <thread>
 #include <cmath>
 
 #endif

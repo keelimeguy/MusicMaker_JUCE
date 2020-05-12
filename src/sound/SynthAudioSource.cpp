@@ -2,9 +2,9 @@
 #include "SineWaveSound.h"
 #include "SineWaveVoice.h"
 
-SynthAudioSource::SynthAudioSource(juce::MidiKeyboardState &keyState)
+SynthAudioSource::SynthAudioSource(juce::MidiKeyboardState &keyState, int numVoices)
     : keyboardState(keyState) {
-    for (uint8_t i = 0; i < 4; ++i)
+    for (uint8_t i = 0; i < numVoices; ++i)
         synth.addVoice(new SineWaveVoice());
 
     synth.addSound(new SineWaveSound());

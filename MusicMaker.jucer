@@ -16,6 +16,7 @@
       <FILE id="cpp3" name="SineWaveSound.cpp" compile="1" resource="0" file="src/sound/SineWaveSound.cpp"/>
       <FILE id="cpp4" name="SineWaveVoice.cpp" compile="1" resource="0" file="src/sound/SineWaveVoice.cpp"/>
       <FILE id="cpp5" name="SynthAudioSource.cpp" compile="1" resource="0" file="src/sound/SynthAudioSource.cpp"/>
+      <FILE id="cpp6" name="Synthesizer.cpp" compile="1" resource="0" file="src/theory/Synthesizer.cpp"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
