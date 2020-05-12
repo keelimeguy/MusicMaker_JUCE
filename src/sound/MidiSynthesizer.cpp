@@ -1,5 +1,4 @@
 #include "MidiSynthesizer.h"
-#include "Logger.h"
 
 MidiSynthesizer::MidiSynthesizer(int numVoices)
     : numVoices(numVoices), synthAudioSource(keyboardState, numVoices) {

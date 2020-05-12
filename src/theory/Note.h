@@ -28,6 +28,7 @@ public:
             case B: return "B";
 
             default:
+                PRINT_CRITICAL("Unknown note value: {}", value);
                 assert(false);
                 return "[UNKNOWN_NOTE]";
         }

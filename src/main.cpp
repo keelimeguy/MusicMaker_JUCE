@@ -1,26 +1,25 @@
-#include "Logger.h"
 #include "Synthesizer.h"
-#include "Pitch.h"
+#include "Scale.h"
 
 int main() {
     Logger::Init();
 
-    auto player = std::make_unique<Synthesizer>(4);
+    auto player = std::make_unique<Synthesizer>(1);
+    auto scale = std::make_unique<Scale>(Note::C, Mode::Major);
 
-    player->addPitch(new Pitch(Note::C, 5));
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    int ordinal = 1;
+    auto pitch = scale->getPitch(ordinal);
+    auto last_pitch = pitch.transpose(12);
 
-    player->addPitch(new Pitch(Note::E, 5));
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    while (last_pitch.getValue() != pitch.getValue()) {
+        player->addPitch(pitch);
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        player->removePitch(pitch);
 
-    player->addPitch(new Pitch(Note::G, 5));
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+        pitch = scale->getPitch(++ordinal);
+    }
 
-    player->addPitch(new Pitch(Note::Bb, 5));
-    std::this_thread::sleep_for(std::chrono::seconds(1));
-
-    player->addPitch(new Pitch(Note::C, 6));
-
+    player->addPitch(last_pitch);
     system("pause");
 
     return 0;

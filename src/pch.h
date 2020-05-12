@@ -10,4 +10,6 @@
 #include <thread>
 #include <cmath>
 
+#include "Logger.h"
+
 #endif
