@@ -1,8 +1,6 @@
 #pragma once
 
-enum Note {
-    C = 12, Db, D, Eb, E, F, Gb, G, Ab, A, Bb, B,
-};
+#include "Note.h"
 
 class Pitch {
 public:
@@ -15,6 +13,7 @@ public:
     Note getNote() { return note; }
     int getOctave() { return octave; }
     int getValue() { return value; }
+    std::string getName() { return note.getName() + std::to_string(octave); }
 
 private:
     Note note;

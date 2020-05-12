@@ -9,7 +9,7 @@ Synthesizer::~Synthesizer() {
 }
 
 void Synthesizer::addPitch(Pitch *pitch, int channel) {
-    PRINT_TRACE("Adding pitch: {}", pitch->getValue());
+    PRINT_TRACE("Adding pitch: {}", pitch->getName());
     keyboardState.noteOn(channel, pitch->getValue(), 1.0);
 
     if (++activeVoices > numVoices) {
@@ -18,7 +18,7 @@ void Synthesizer::addPitch(Pitch *pitch, int channel) {
 }
 
 void Synthesizer::removePitch(Pitch *pitch, int channel) {
-    PRINT_TRACE("Removing pitch: {}", pitch->getValue());
+    PRINT_TRACE("Removing pitch: {}", pitch->getName());
     keyboardState.noteOff(channel, pitch->getValue(), 1.0);
 
     activeVoices--;

@@ -10,13 +10,13 @@ int main() {
     player->addPitch(new Pitch(Note::C, 5));
     std::this_thread::sleep_for(std::chrono::seconds(1));
 
-    player->addPitch(new Pitch(Note::D, 5));
-    std::this_thread::sleep_for(std::chrono::seconds(1));
-
     player->addPitch(new Pitch(Note::E, 5));
     std::this_thread::sleep_for(std::chrono::seconds(1));
 
     player->addPitch(new Pitch(Note::G, 5));
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+
+    player->addPitch(new Pitch(Note::Bb, 5));
     std::this_thread::sleep_for(std::chrono::seconds(1));
 
     player->addPitch(new Pitch(Note::C, 6));
