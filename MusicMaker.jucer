@@ -6,12 +6,16 @@
               companyEmail="" reportAppUsage="0" displaySplashScreen="0"
               splashScreenColour="Dark" projectType="consoleapp"
               bundleIdentifier="com.keelimeguy.musicmaker" includeBinaryInAppConfig="1"
-              cppLanguageStandard="17" defines="DONT_SET_USING_JUCE_NAMESPACE" headerPath="src/" >
+              cppLanguageStandard="17" defines="DONT_SET_USING_JUCE_NAMESPACE"
+              headerPath="src/;&#10;src/sound/;&#10;src/theory/" >
   <MAINGROUP id="maingroup_id" name="MusicMaker">
     <GROUP id="{00000000-0000-0000-0000-000000000000}" name="src">
       <FILE id="cpp0" name="main.cpp" compile="1" resource="0" file="src/main.cpp"/>
       <FILE id="cpp1" name="Logger.cpp" compile="1" resource="0" file="src/Logger.cpp"/>
-      <FILE id="cpp2" name="AudioPlayer.cpp" compile="1" resource="0" file="src/sound/AudioPlayer.cpp"/>
+      <FILE id="cpp2" name="MidiSynthesizer.cpp" compile="1" resource="0" file="src/sound/MidiSynthesizer.cpp"/>
+      <FILE id="cpp3" name="SineWaveSound.cpp" compile="1" resource="0" file="src/sound/SineWaveSound.cpp"/>
+      <FILE id="cpp4" name="SineWaveVoice.cpp" compile="1" resource="0" file="src/sound/SineWaveVoice.cpp"/>
+      <FILE id="cpp5" name="SynthAudioSource.cpp" compile="1" resource="0" file="src/sound/SynthAudioSource.cpp"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
@@ -25,7 +29,7 @@
       </CONFIGURATIONS>
     </LINUX_MAKE>
     <VS2017 targetFolder="Builds/VisualStudio2017" smallIcon="" bigIcon=""
-            extraLinkerFlags="" extraCompilerFlags="/DUNICODE /D_UNICODE /W4 /wd4996 /wd4206 /WX" externalLibraries="">
+            extraLinkerFlags="" extraCompilerFlags="/DUNICODE /D_UNICODE /W4 /wd4100 /wd4996 /wd4206 /WX" externalLibraries="">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" linkTimeOptimisation="0" isDebug="1" optimisation="0"
                        defines="WIN32_LEAN_AND_MEAN" libraryPath="" headerPath="" targetName="MusicMaker"
@@ -36,7 +40,7 @@
       </CONFIGURATIONS>
     </VS2017>
     <VS2019 targetFolder="Builds/VisualStudio2019" smallIcon="" bigIcon=""
-            extraLinkerFlags="" extraCompilerFlags="/DUNICODE /D_UNICODE /W4 /wd4996 /wd4206 /WX" externalLibraries="">
+            extraLinkerFlags="" extraCompilerFlags="/DUNICODE /D_UNICODE /W4 /wd4100 /wd4996 /wd4206 /WX" externalLibraries="">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" linkTimeOptimisation="0" isDebug="1" optimisation="0"
                        defines="WIN32_LEAN_AND_MEAN" libraryPath="" headerPath="" targetName="MusicMaker"

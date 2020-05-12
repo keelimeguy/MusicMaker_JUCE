@@ -1,48 +1,35 @@
-#include "AudioPlayer.h"
+#include "MidiSynthesizer.h"
 #include "Logger.h"
 
-AudioPlayer::AudioPlayer() {
+MidiSynthesizer::MidiSynthesizer()
+    : synthAudioSource(keyboardState) {
     auto xml = juce::parseXML("<DEVICESETUP deviceType=\"DirectSound\" audioOutputDeviceName=\"Primary Sound Driver\"/>");
     setAudioChannels(0, 2, xml.get());
-}
-
-AudioPlayer::~AudioPlayer() {
-    shutdownAudio();
-}
-
-void AudioPlayer::play_pitch(Pitch *p) {
-    PRINT_TRACE("Playing {} Hz", (int)p->get_frequency());
-    phaseDelta = (float) (juce::MathConstants<double>::twoPi * p->get_frequency() / sampleRate);
 
     dumpDeviceInfo();
 }
 
-void AudioPlayer::prepareToPlay(int samplesPerBlockExpected, double newSampleRate) {
-    sampleRate = newSampleRate;
-    expectedSamplesPerBlock = samplesPerBlockExpected;
+MidiSynthesizer::~MidiSynthesizer() {
+    shutdownAudio();
+    releaseResources();
+}
+
+juce::MidiKeyboardState *MidiSynthesizer::getMidiState() {
+    return &keyboardState;
+}
+
+void MidiSynthesizer::prepareToPlay(int samplesPerBlockExpected, double sampleRate) {
     PRINT_TRACE("Preparing to play audio...");
+    synthAudioSource.prepareToPlay(samplesPerBlockExpected, sampleRate);
 }
 
-void AudioPlayer::releaseResources() {
+void MidiSynthesizer::releaseResources() {
     PRINT_TRACE("Releasing audio resources");
+    synthAudioSource.releaseResources();
 }
 
-void AudioPlayer::getNextAudioBlock(const juce::AudioSourceChannelInfo &bufferToFill) {
-    bufferToFill.clearActiveBufferRegion();
-    auto originalPhase = phase;
-
-    for (auto chan = 0; chan < bufferToFill.buffer->getNumChannels(); ++chan) {
-        phase = originalPhase;
-
-        auto *channelData = bufferToFill.buffer->getWritePointer(chan, bufferToFill.startSample);
-
-        for (auto i = 0; i < bufferToFill.numSamples ; ++i) {
-            channelData[i] = amplitude * std::sin(phase);
-
-            // increment the phase step for the next sample
-            phase = std::fmod(phase + phaseDelta, juce::MathConstants<float>::twoPi);
-        }
-    }
+void MidiSynthesizer::getNextAudioBlock(const juce::AudioSourceChannelInfo &bufferToFill) {
+    synthAudioSource.getNextAudioBlock(bufferToFill);
 }
 
 static juce::String getListOfActiveBits(const juce::BigInteger &b) {
@@ -55,7 +42,7 @@ static juce::String getListOfActiveBits(const juce::BigInteger &b) {
     return bits.joinIntoString(", ");
 }
 
-void AudioPlayer::dumpDeviceInfo() {
+void MidiSynthesizer::dumpDeviceInfo() {
 
     PRINT_INFO("--------------------------------------");
     for (auto &dev_type : deviceManager.getAvailableDeviceTypes()) {
@@ -82,4 +69,5 @@ void AudioPlayer::dumpDeviceInfo() {
     } else {
         PRINT_INFO("No audio device open");
     }
+    PRINT_INFO("--------------------------------------");
 }
