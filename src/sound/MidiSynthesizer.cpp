@@ -13,12 +13,12 @@ MidiSynthesizer::~MidiSynthesizer() {
 }
 
 void MidiSynthesizer::prepareToPlay(int samplesPerBlockExpected, double sampleRate) {
-    PRINT_TRACE("Preparing to play audio...");
+    PRINT_DEBUG("Preparing to play audio...");
     synthAudioSource.prepareToPlay(samplesPerBlockExpected, sampleRate);
 }
 
 void MidiSynthesizer::releaseResources() {
-    PRINT_TRACE("Releasing audio resources");
+    PRINT_DEBUG("Releasing audio resources");
     synthAudioSource.releaseResources();
 }
 
@@ -38,30 +38,30 @@ static juce::String getListOfActiveBits(const juce::BigInteger &b) {
 
 void MidiSynthesizer::dumpDeviceInfo() {
 
-    PRINT_INFO("--------------------------------------");
+    PRINT_LOG("--------------------------------------");
     for (auto &dev_type : deviceManager.getAvailableDeviceTypes()) {
-        PRINT_INFO("TYPE: {}", dev_type->getTypeName());
+        PRINT_LOG("TYPE: {}", dev_type->getTypeName());
         for (auto &name : dev_type->getDeviceNames()) {
-            PRINT_INFO("\tDEVICE: {}", name);
+            PRINT_LOG("\tDEVICE: {}", name);
         }
     }
 
-    PRINT_INFO("--------------------------------------");
-    PRINT_INFO("Current audio device type: " + (deviceManager.getCurrentDeviceTypeObject() != nullptr
+    PRINT_LOG("--------------------------------------");
+    PRINT_LOG("Current audio device type: " + (deviceManager.getCurrentDeviceTypeObject() != nullptr
                ? deviceManager.getCurrentDeviceTypeObject()->getTypeName()
                : "<none>"));
 
     if (auto *device = deviceManager.getCurrentAudioDevice()) {
-        PRINT_INFO("Current audio device: "   + device->getName().quoted());
-        PRINT_INFO("Sample rate: "            + juce::String(device->getCurrentSampleRate()) + " Hz");
-        PRINT_INFO("Block size: "             + juce::String(device->getCurrentBufferSizeSamples()) + " samples");
-        PRINT_INFO("Bit depth: "              + juce::String(device->getCurrentBitDepth()));
-        PRINT_INFO("Input channel names: "    + device->getInputChannelNames().joinIntoString(", "));
-        PRINT_INFO("Active input channels: "  + getListOfActiveBits(device->getActiveInputChannels()));
-        PRINT_INFO("Output channel names: "   + device->getOutputChannelNames().joinIntoString(", "));
-        PRINT_INFO("Active output channels: " + getListOfActiveBits(device->getActiveOutputChannels()));
+        PRINT_LOG("Current audio device: "   + device->getName().quoted());
+        PRINT_LOG("Sample rate: "            + juce::String(device->getCurrentSampleRate()) + " Hz");
+        PRINT_LOG("Block size: "             + juce::String(device->getCurrentBufferSizeSamples()) + " samples");
+        PRINT_LOG("Bit depth: "              + juce::String(device->getCurrentBitDepth()));
+        PRINT_LOG("Input channel names: "    + device->getInputChannelNames().joinIntoString(", "));
+        PRINT_LOG("Active input channels: "  + getListOfActiveBits(device->getActiveInputChannels()));
+        PRINT_LOG("Output channel names: "   + device->getOutputChannelNames().joinIntoString(", "));
+        PRINT_LOG("Active output channels: " + getListOfActiveBits(device->getActiveOutputChannels()));
     } else {
-        PRINT_INFO("No audio device open");
+        PRINT_LOG("No audio device open");
     }
-    PRINT_INFO("--------------------------------------");
+    PRINT_LOG("--------------------------------------");
 }

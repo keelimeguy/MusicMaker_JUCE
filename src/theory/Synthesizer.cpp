@@ -9,14 +9,14 @@ Synthesizer::~Synthesizer() {
 
 void Synthesizer::addPitch(const Pitch &pitch, int channel) {
     if (keyboardState.isNoteOn(channel, pitch.getValue())) {
-        PRINT_WARN("Tried to add pitch that already exists: {}", pitch.getName());
+        PRINT_WARNING("Tried to add pitch that already exists: {}", pitch.getName());
 
     } else {
-        PRINT_TRACE("Adding pitch: {}", pitch.getName());
+        PRINT_DEBUG("Adding pitch: {}", pitch.getName());
         keyboardState.noteOn(channel, pitch.getValue(), 1.0);
 
         if (++activeVoices > numVoices) {
-            PRINT_WARN("More pitches than available voices! ({}>{})", activeVoices, numVoices);
+            PRINT_WARNING("More pitches than available voices! ({}>{})", activeVoices, numVoices);
         }
     }
 }
@@ -24,13 +24,13 @@ void Synthesizer::addPitch(const Pitch &pitch, int channel) {
 void Synthesizer::removePitch(const Pitch &pitch, int channel) {
     if (keyboardState.isNoteOn(channel, pitch.getValue())) {
 
-        PRINT_TRACE("Removing pitch: {}", pitch.getName());
+        PRINT_DEBUG("Removing pitch: {}", pitch.getName());
         keyboardState.noteOff(channel, pitch.getValue(), 1.0);
 
         activeVoices--;
 
     } else {
-        PRINT_WARN("Tried to remove pitch that didn't exist: {}", pitch.getName());
+        PRINT_WARNING("Tried to remove pitch that didn't exist: {}", pitch.getName());
     }
 }
 

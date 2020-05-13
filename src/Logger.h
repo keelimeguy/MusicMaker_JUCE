@@ -15,8 +15,8 @@ private:
 };
 
 // Logging macros
-#define PRINT_TRACE(...)    ::Logger::GetCoreLogger()->trace(__VA_ARGS__)
-#define PRINT_INFO(...)     ::Logger::GetCoreLogger()->info(__VA_ARGS__)
-#define PRINT_WARN(...)     ::Logger::GetCoreLogger()->warn(__VA_ARGS__)
+#define PRINT_DEBUG(...)    ::Logger::GetCoreLogger()->trace(__VA_ARGS__)
+#define PRINT_LOG(...)      ::Logger::GetCoreLogger()->info(__VA_ARGS__)
+#define PRINT_WARNING(...)  ::Logger::GetCoreLogger()->warn(__VA_ARGS__)
 #define PRINT_ERROR(...)    ::Logger::GetCoreLogger()->error(__VA_ARGS__)
 #define PRINT_CRITICAL(...) ::Logger::GetCoreLogger()->critical(__VA_ARGS__)
