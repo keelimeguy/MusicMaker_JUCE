@@ -18,6 +18,9 @@
       <FILE id="cpp5" name="SynthAudioSource.cpp" compile="1" resource="0" file="src/sound/SynthAudioSource.cpp"/>
       <FILE id="cpp6" name="Synthesizer.cpp" compile="1" resource="0" file="src/theory/Synthesizer.cpp"/>
       <FILE id="cpp7" name="Mode.cpp" compile="1" resource="0" file="src/theory/Mode.cpp"/>
+      <FILE id="cpp8" name="Note.cpp" compile="1" resource="0" file="src/theory/Note.cpp"/>
+      <FILE id="cpp9" name="Pitch.cpp" compile="1" resource="0" file="src/theory/Pitch.cpp"/>
+      <FILE id="cpp10" name="PitchBank.cpp" compile="1" resource="0" file="src/theory/PitchBank.cpp"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>

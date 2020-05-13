@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Note.h"
 #include "Pitch.h"
 #include "Mode.h"
 

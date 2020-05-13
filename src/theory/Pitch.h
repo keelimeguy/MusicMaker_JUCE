@@ -4,30 +4,26 @@
 
 class Pitch {
 public:
-    Pitch(Note note, int octave)
-        : note(note), octave(octave), value(note + 12 * octave) {
-    }
+    Pitch(Note note, int octave = 4);
+    ~Pitch();
 
-    ~Pitch() {}
+    Note getNote() const;
+    int getOctave() const;
+    int getValue() const;
+    std::string getName() const;
 
-    Note getNote() { return note; }
-    int getOctave() { return octave; }
-    int getValue() { return value; }
-    std::string getName() { return note.getName() + std::to_string(octave); }
+    void setOctave(int octave);
 
-    Pitch transpose(int steps) {
-        int new_value = (value + steps) % 12 + 12;
-        int new_octave = octave + ((value % 12) + steps) / 12;
-        return Pitch(Note(static_cast<Note::Value>(new_value)), new_octave);
-    }
+    Pitch transpose(int steps);
+    Pitch flat();
+    Pitch sharp();
 
-    Pitch flat() {
-        return transpose(-1);
-    }
-
-    Pitch sharp() {
-        return transpose(1);
-    }
+    friend inline bool operator<(const Pitch &a, const Pitch &b) { return a.value < b.value; }
+    friend inline bool operator>(const Pitch &a, const Pitch &b) { return b < a; }
+    friend inline bool operator<=(const Pitch &a, const Pitch &b) { return !(a > b); }
+    friend inline bool operator>=(const Pitch &a, const Pitch &b) { return !(a < b); }
+    friend inline bool operator==(const Pitch &a, const Pitch &b) { return a.value == b.value; }
+    friend inline bool operator!=(const Pitch &a, const Pitch &b) { return !(a == b); }
 
 private:
     Note note;

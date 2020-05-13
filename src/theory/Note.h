@@ -12,27 +12,9 @@ public:
     operator Value() const { return value; } // Allow switch and comparisons.
     explicit operator bool() = delete; // Prevent usage: if(note)
 
-    std::string getName() {
-        switch (value) {
-            case C: return "C";
-            case Db: return "Db";
-            case D: return "D";
-            case Eb: return "Eb";
-            case E: return "E";
-            case F: return "F";
-            case Gb: return "Gb";
-            case G: return "G";
-            case Ab: return "Ab";
-            case A: return "A";
-            case Bb: return "Bb";
-            case B: return "B";
+    std::string getName() const;
 
-            default:
-                PRINT_CRITICAL("Unknown note value: {}", value);
-                assert(false);
-                return "[UNKNOWN_NOTE]";
-        }
-    }
+    static Note fromString(std::string);
 
 private:
     Value value;
