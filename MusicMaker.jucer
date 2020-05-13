@@ -25,7 +25,7 @@
   </MAINGROUP>
   <EXPORTFORMATS>
     <LINUX_MAKE targetFolder="Builds/LinuxMakefile" smallIcon="" bigIcon=""
-                extraLinkerFlags="" extraCompilerFlags="-Wall -Werror -m64" externalLibraries="">
+                extraLinkerFlags="" extraCompilerFlags="-m64" externalLibraries="">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" linkTimeOptimisation="0" isDebug="1" optimisation="0"
                        defines="" libraryPath="" headerPath="" targetName="MusicMaker"/>
@@ -34,24 +34,26 @@
       </CONFIGURATIONS>
     </LINUX_MAKE>
     <VS2017 targetFolder="Builds/VisualStudio2017" smallIcon="" bigIcon=""
-            extraLinkerFlags="" extraCompilerFlags="/DUNICODE /D_UNICODE /W4 /wd4100 /wd4996 /wd4206 /WX" externalLibraries="">
+            extraCompilerFlags="/D_SCL_SECURE_NO_WARNINGS /DUNICODE /D_UNICODE /DWIN32_LEAN_AND_MEAN"
+            extraLinkerFlags="" externalLibraries="">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" linkTimeOptimisation="0" isDebug="1" optimisation="0"
-                       defines="WIN32_LEAN_AND_MEAN" libraryPath="" headerPath="" targetName="MusicMaker"
+                       defines="" libraryPath="" headerPath="" targetName="MusicMaker"
                        winArchitecture="x64" useRuntimeLibDLL="1" />
         <CONFIGURATION name="Release" linkTimeOptimisation="1" isDebug="0" optimisation="3"
-                       defines="WIN32_LEAN_AND_MEAN" libraryPath="" headerPath="" targetName="MusicMaker"
+                       defines="" libraryPath="" headerPath="" targetName="MusicMaker"
                        winArchitecture="x64" useRuntimeLibDLL="0" />
       </CONFIGURATIONS>
     </VS2017>
     <VS2019 targetFolder="Builds/VisualStudio2019" smallIcon="" bigIcon=""
-            extraLinkerFlags="" extraCompilerFlags="/DUNICODE /D_UNICODE /W4 /wd4100 /wd4996 /wd4206 /WX" externalLibraries="">
+            extraCompilerFlags="/D_SCL_SECURE_NO_WARNINGS /DUNICODE /D_UNICODE /DWIN32_LEAN_AND_MEAN"
+            extraLinkerFlags="" externalLibraries="">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" linkTimeOptimisation="0" isDebug="1" optimisation="0"
-                       defines="WIN32_LEAN_AND_MEAN" libraryPath="" headerPath="" targetName="MusicMaker"
+                       defines="" libraryPath="" headerPath="" targetName="MusicMaker"
                        winArchitecture="x64" useRuntimeLibDLL="1" />
         <CONFIGURATION name="Release" linkTimeOptimisation="1" isDebug="0" optimisation="3"
-                       defines="WIN32_LEAN_AND_MEAN" libraryPath="" headerPath="" targetName="MusicMaker"
+                       defines="" libraryPath="" headerPath="" targetName="MusicMaker"
                        winArchitecture="x64" useRuntimeLibDLL="0" />
       </CONFIGURATIONS>
     </VS2019>

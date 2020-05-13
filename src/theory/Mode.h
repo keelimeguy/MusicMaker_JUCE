@@ -28,8 +28,8 @@ public:
         }
 
         if (ordinal > (int)intervals->size()) {
-            step = ((ordinal - 1) / intervals->size()) * octave_step;
-            ordinal = (ordinal - 1) % intervals->size();
+            step = ((ordinal - 1) / (int)intervals->size()) * octave_step;
+            ordinal = (ordinal - 1) % (int)intervals->size();
         } else {
             ordinal--;
         }

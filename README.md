@@ -6,7 +6,7 @@ This program is an inspired rewrite of my [java implementation](https://github.c
 
 
 ## Usage
-- `cmake -S . -B build [-D<ARGS>=0|1]`
+- `cmake -S . -B build -T host=x64 [-D<ARGS>=0|1]`
 - `cmake --build build --config <Debug|Release> --target install`
 
 Installed files will appear in the "install/" subdirectory.
@@ -15,11 +15,12 @@ Installed files will appear in the "install/" subdirectory.
 - `AUTO_BUILD_FRUT` : Build the FRUT sub-repository automatically, defaults to 1
 - `VENDOR_BUILD_DEMORUNNER` : Build the DemoRunner example JUCE project, defaults to 0
 - `USE_DEMORUNNER_BIGOBJ_FIX` : Add big-obj flags to fix large file errors in DemoRunner, defaults to 1
+- `RUN_CLANG_TIDY`:  Run clang-tidy with the compiler, defaults to 0
 
 
 ## System
 MusicMaker Tested on:
-- Windows 10.0.18362 --- with MSVC 19.13.26128.0
+- Windows 10.0.18362 --- with MSVC 19.25.28614.0
 
 DemoRunner Tested on:
 - Windows 10.0.18362 --- with MSVC 19.13.26128.0

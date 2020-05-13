@@ -9,6 +9,7 @@ cmake_minimum_required( VERSION 3.17.2 )
 option( AUTO_BUILD_FRUT "Build the FRUT sub-repository automatically" ON )
 option( VENDOR_BUILD_DEMORUNNER "Build the DemoRunner example JUCE project" OFF )
 option( USE_DEMORUNNER_BIGOBJ_FIX "Add big-obj flags to fix large file errors in DemoRunner" ON )
+option( RUN_CLANG_TIDY "Run clang-tidy with the compiler" OFF )
 
 
 ####################################################################
@@ -33,12 +34,16 @@ set( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin ) # Output directory
 set( CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_LIST_DIR}/install CACHE PATH "" FORCE )
 message( STATUS "CMAKE_INSTALL_PREFIX is set to: ${CMAKE_INSTALL_PREFIX}" )
 
+if( RUN_CLANG_TIDY )
+    include( configure_clang-tidy.cmake )
+endif()
+
 ####################################################################
 # Build projects
 ####################################################################
 
 add_subdirectory( vendor )
-include( build_project_main.cmake )
+include_jucer_file( ${CMAKE_CURRENT_LIST_DIR}/MusicMaker.jucer TRUE )
 
 if( VENDOR_BUILD_DEMORUNNER )
     build_demorunner()
@@ -58,6 +63,10 @@ if( MSVC )
     if( VENDOR_BUILD_DEMORUNNER )
         set_directory_properties( PROPERTIES
             VS_STARTUP_PROJECT DemoRunner
+        )
+    else()
+        set_directory_properties( PROPERTIES
+            VS_STARTUP_PROJECT MusicMaker
         )
     endif()
 endif()

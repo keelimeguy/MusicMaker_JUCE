@@ -24,7 +24,7 @@ add_custom_target( clean_juce
 
 ####################################################################
 
-function( include_jucer_file jucer_file )
+function( include_jucer_file jucer_file fix_target_is_defined )
 
     get_filename_component( jucer_file_dir ${jucer_file} DIRECTORY )
     get_filename_component( jucer_file_name ${jucer_file} NAME_WLE )
@@ -45,12 +45,28 @@ function( include_jucer_file jucer_file )
         message( "WARNING: Skipping automatic build of FRUT dependency." )
     endif()
 
+    execute_process(
+        COMMAND sed -i "/target_include_directories(\${.*} SYSTEM/b; s/target_include_directories(\${.*}/& SYSTEM/g" FRUT/install/FRUT/cmake/Reprojucer.cmake
+        WORKING_DIRECTORY ${JUCE_VENDOR_DIR}
+    )
+
     # Generate the cmake file
     message( STATUS "convert_jucer_to_cmake: ${jucer_file}" )
     execute_process(
         COMMAND ${JUCE_VENDOR_DIR}/FRUT/install/FRUT/bin/Jucer2Reprojucer ${jucer_file} ${JUCE_VENDOR_DIR}/FRUT/install/FRUT/cmake/Reprojucer.cmake --juce-modules ${JUCE_VENDOR_DIR}/JUCE/modules
         WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${jucer_file_name}_cmake
     )
+
+    if( fix_target_is_defined )
+        execute_process(
+            COMMAND sed -i "$ a include( ${jucer_file_dir}/fix_target_${jucer_file_name}.cmake )" CMakeLists.txt
+            WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${jucer_file_name}_cmake
+        )
+        execute_process(
+            COMMAND sed -i "$ a fix_target_${jucer_file_name}()" CMakeLists.txt
+            WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${jucer_file_name}_cmake
+        )
+    endif()
 
     # Build the generated cmake file
     add_subdirectory( ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${jucer_file_name}_cmake )

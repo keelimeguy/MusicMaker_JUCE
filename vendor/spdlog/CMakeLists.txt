@@ -4,7 +4,7 @@ project( spdlog )
 
 if( NOT ${${PROJECT_NAME}_LIBRARY_RELEASE} STREQUAL "${PROJECT_NAME}_LIBRARY_RELEASE-NOTFOUND" )
     add_library( ${PROJECT_NAME} INTERFACE )
-    target_include_directories( ${PROJECT_NAME}
+    target_include_directories( ${PROJECT_NAME} SYSTEM
         INTERFACE ${CMAKE_CURRENT_LIST_DIR}/bin/include
     )
 
