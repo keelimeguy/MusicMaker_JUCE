@@ -50,9 +50,9 @@ std::regex PitchBank::chord_regex(
     "([A-G](?:##?|bb?)?)"                                                // key
     "((?:maj|mM|m|M|dim|aug)?)"                                          // kind
     "((?:[1-9]\\d*)?)"                                                   // add
-    "((?:(?:(?:(?:##?|bb?)|(?:add|no)(?:##?|bb?)?)[1-9]\\d*)|sus[24])*)" // adjust
+    "((?:(?:(?:(?:##?|bb?)|(?:add|no)(?:##?|bb?)?)[1-9]\\d*)|sus[24]?)*)" // adjust
     "((?:/(?:[A-G](?:##?|bb?)?|(?:##?|bb?)?[1-9]\\d*))?)"                // bass
-    "((?:(?:(?:##?|bb?)|(?:add|no)(?:##?|bb?)?)[1-9]\\d*|sus[24])*)",    // adjust2
+    "((?:(?:(?:##?|bb?)|(?:add|no)(?:##?|bb?)?)[1-9]\\d*|sus[24]?)*)",    // adjust2
     std::regex::optimize
 );
 
@@ -67,7 +67,7 @@ std::regex PitchBank::addadjust_regex(
 );
 
 std::regex PitchBank::susadjust_regex(
-    "sus[24]", // susadjust
+    "sus[24]?", // susadjust
     std::regex::nosubs | std::regex::optimize
 );
 
@@ -175,7 +175,10 @@ PitchBank PitchBank::fromString(std::string chord_str) {
                     std::string susadjust = re_match.str(0);
 
                     susadjust.erase(0, 3);
-                    int sus_step = std::stoi(susadjust);
+                    int sus_step = 4; // Default to sus4 if just "sus" is given
+                    if (!susadjust.empty()) {
+                        sus_step = std::stoi(susadjust);
+                    }
 
                     // Remove existing third to be suspended
                     if (kind == "m" || kind == "dim") {
@@ -268,6 +271,8 @@ PitchBank PitchBank::fromString(std::string chord_str) {
                 }
             }
         }
+
+        chord.order(chord.pitches[0]);
 
     } else {
         PRINT_ERROR("Error matching chord regex: {}", chord_str);

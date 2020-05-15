@@ -22,21 +22,36 @@ void play_scale(Note root, Mode mode) {
     system("pause");
 }
 
-void play_chord(std::string chord_str) {
-    auto player = std::make_unique<Synthesizer>(4);
+void play_chord(std::string chord_str, int length = 0, std::shared_ptr<Synthesizer> player = nullptr) {
+    if (player == nullptr) {
+        player = std::make_shared<Synthesizer>(5);
+    }
+
     auto chord = PitchBank::fromString(chord_str);
 
     player->addPitchBank(chord);
-    system("pause");
+    PRINT_LOG("Playing: {}", chord_str);
+    if (length > 0) {
+        std::this_thread::sleep_for(std::chrono::seconds(length));
+    } else {
+        system("pause");
+    }
+    player->removePitchBank(chord);
 }
 
-int main() {
+int main(int argc, char *argv[]) {
     Logger::Init();
 
-    play_scale(Note::C, Mode::Major);
-    play_chord("C");
-    play_chord("C7");
-    play_chord("Cmaj7");
+    if (argc > 1) {
+        auto player = std::make_shared<Synthesizer>(5);
+        for (int i = 1; i < argc; ++i) {
+            play_chord(argv[i], 2, player);
+        }
+        system("pause");
+
+    } else {
+        play_scale(Note::C, Mode::Major);
+    }
 
     return 0;
 }
