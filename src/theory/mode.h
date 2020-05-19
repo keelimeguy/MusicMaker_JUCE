@@ -2,8 +2,8 @@
 
 class Mode {
 public:
-    Mode(std::string name, const std::vector<int> &ascending, const std::vector<int> &descending, int octaves = 1);
-    Mode(std::string name, const std::vector<int> &ascending);
+    Mode(const std::string &name, const std::vector<int> &ascending, const std::vector<int> &descending, int octaves = 1);
+    Mode(const std::string &name, const std::vector<int> &ascending);
 
     const std::string &get_name() const;
 

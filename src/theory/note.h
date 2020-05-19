@@ -14,7 +14,7 @@ public:
 
     const std::string get_name() const;
 
-    static Note FromString(std::string);
+    static const Note FromString(const std::string &name);
 
 private:
     Value value_;

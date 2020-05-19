@@ -1,6 +1,6 @@
 #include "scale.h"
 
-Scale::Scale(Note root, Mode mode, int octave)
+Scale::Scale(const Note &root, const Mode &mode, int octave)
     : root_(root, octave), mode_(mode) {
 }
 

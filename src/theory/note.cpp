@@ -22,7 +22,7 @@ const std::string Note::get_name() const {
     }
 }
 
-Note Note::FromString(std::string name) {
+const Note Note::FromString(const std::string &name) {
     if      (name == "C" || name == "B#" || name == "Dbb")  return Note(Value::C);
     else if (name == "Db" || name == "C#" || name == "B##") return Note(Value::Db);
     else if (name == "D" || name == "Ebb" || name == "C##") return Note(Value::D);

@@ -1,13 +1,13 @@
 #include "mode.h"
 
-Mode::Mode(std::string name, const std::vector<int> &ascending, const std::vector<int> &descending, int octaves)
+Mode::Mode(const std::string &name, const std::vector<int> &ascending, const std::vector<int> &descending, int octaves)
     : name_(name), ascending_(ascending), descending_(descending), octaves_(octaves) {
     assert(ascending_.size() <= 128);
     assert(descending_.size() <= 128);
     assert(octaves_ <= 11);
 }
 
-Mode::Mode(std::string name, const std::vector<int> &ascending)
+Mode::Mode(const std::string &name, const std::vector<int> &ascending)
     : Mode(name, ascending, ascending) {
     std::reverse(descending_.begin(), descending_.end());
 }

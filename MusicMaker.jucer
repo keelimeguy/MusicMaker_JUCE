@@ -7,7 +7,7 @@
               splashScreenColour="Dark" projectType="consoleapp"
               bundleIdentifier="com.keelimeguy.musicmaker" includeBinaryInAppConfig="1"
               cppLanguageStandard="17" defines="DONT_SET_USING_JUCE_NAMESPACE"
-              headerPath="src/;&#10;src/sound/;&#10;src/theory/" >
+              headerPath="src/;&#10;src/sound/;&#10;src/theory/;&#10;src/theory/staff/" >
   <MAINGROUP id="maingroup_id" name="MusicMaker">
     <GROUP id="{00000000-0000-0000-0000-000000000000}" name="src">
       <FILE name="main.cpp" compile="1" resource="0" file="src/main.cpp"/>
@@ -22,6 +22,8 @@
       <FILE name="pitch.cpp" compile="1" resource="0" file="src/theory/pitch.cpp"/>
       <FILE name="pitch_bank.cpp" compile="1" resource="0" file="src/theory/pitch_bank.cpp"/>
       <FILE name="scale.cpp" compile="1" resource="0" file="src/theory/scale.cpp"/>
+      <FILE name="sequence.cpp" compile="1" resource="0" file="src/theory/staff/sequence.cpp"/>
+      <FILE name="staff.cpp" compile="1" resource="0" file="src/theory/staff/staff.cpp"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>

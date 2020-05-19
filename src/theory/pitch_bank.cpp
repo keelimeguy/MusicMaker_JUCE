@@ -8,17 +8,35 @@ PitchBank::PitchBank() {
 PitchBank::~PitchBank() {
 }
 
-void PitchBank::AddPitch(Pitch pitch) {
+const std::string &PitchBank::get_name() const {
+    return name_;
+}
+
+void PitchBank::AddPitch(const Pitch &pitch) {
+    assert(name_.find("[") == std::string::npos);
+
     if (std::find(pitches_.begin(), pitches_.end(), pitch) == pitches_.end()) {
         pitches_.push_back(pitch);
+        name_ += "," + pitch.get_name();
     }
 }
 
-void PitchBank::RemovePitch(Pitch pitch) {
+void PitchBank::RemovePitch(const Pitch &pitch) {
+    assert(name_.find("[") == std::string::npos);
+
     pitches_.erase(std::remove(pitches_.begin(), pitches_.end(), pitch), pitches_.end());
+    auto pos = name_.find(pitch.get_name());
+    if (pos != std::string::npos) {
+        name_.erase(pos, pitch.get_name().length());
+    }
+
+    pos = name_.find(",,");
+    if (pos != std::string::npos) {
+        name_.erase(pos, 1);
+    }
 }
 
-void PitchBank::Reorder(Pitch bass) {
+void PitchBank::Reorder(const Pitch &bass) {
     bool is_bass_added = false;
 
     auto bass_position = std::find(pitches_.begin(), pitches_.end(), bass);
@@ -82,7 +100,7 @@ std::regex PitchBank::sharpflatadjust_regex_(
     std::regex::nosubs | std::regex::optimize
 );
 
-PitchBank PitchBank::FromString(std::string chord_str) {
+const PitchBank PitchBank::FromString(const std::string &chord_str) {
     PitchBank chord;
 
     std::smatch re_match;
@@ -281,5 +299,6 @@ PitchBank PitchBank::FromString(std::string chord_str) {
         return chord;
     }
 
+    chord.name_ = "[" + chord_str + "]";
     return chord;
 }

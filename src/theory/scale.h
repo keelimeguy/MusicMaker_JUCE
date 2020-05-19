@@ -6,7 +6,7 @@
 
 class Scale {
 public:
-    Scale(Note root, Mode mode, int octave = 4);
+    Scale(const Note &root, const Mode &mode, int octave = 4);
     ~Scale();
 
     Pitch FindPitch(int ordinal) const;

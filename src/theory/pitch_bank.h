@@ -7,17 +7,23 @@ public:
     PitchBank();
     ~PitchBank();
 
-    void AddPitch(Pitch pitch);
-    void RemovePitch(Pitch pitch);
-    void Reorder(Pitch bass);
+    void AddPitch(const Pitch &pitch);
+    void RemovePitch(const Pitch &pitch);
+    void Reorder(const Pitch &bass);
 
-    static PitchBank FromString(std::string chord_str);
+    const std::string &get_name() const;
 
-    inline std::deque<Pitch>::const_iterator cbegin() const noexcept { return pitches_.cbegin(); }
-    inline std::deque<Pitch>::const_iterator cend() const noexcept { return pitches_.cend(); }
+    static const PitchBank FromString(const std::string &chord_str);
+
+    friend inline bool operator==(const PitchBank &a, const PitchBank &b) { return a.pitches_ == b.pitches_; }
+    friend inline bool operator!=(const PitchBank &a, const PitchBank &b) { return !(a == b); }
+
+    inline auto cbegin() const noexcept { return pitches_.cbegin(); }
+    inline auto cend() const noexcept { return pitches_.cend(); }
 
 private:
     std::deque<Pitch> pitches_;
+    std::string name_;
 
     static std::regex chord_regex_;
     static std::regex noadjust_regex_;

@@ -1,9 +1,10 @@
 #include "synthesizer.h"
 #include "pitch_bank.h"
 #include "scale.h"
+#include "staff.h"
 
 namespace musicmaker {
-    void PlayScale(Note root, Mode mode) {
+    void PlayScale(const Note &root, const Mode &mode) {
         auto player = std::make_unique<Synthesizer>(1);
         auto scale = std::make_unique<Scale>(root, mode);
 
@@ -23,15 +24,13 @@ namespace musicmaker {
         system("pause");
     }
 
-    void PlayChord(std::string chord_str, int length = 0, std::shared_ptr<Synthesizer> player = nullptr) {
+    void PlayChord(const PitchBank &chord, int length = 0, std::shared_ptr<Synthesizer> player = nullptr) {
         if (player == nullptr) {
             player = std::make_shared<Synthesizer>(5);
         }
 
-        auto chord = PitchBank::FromString(chord_str);
-
         player->AddPitchBank(chord);
-        PRINT_LOG("Playing: {}", chord_str);
+        PRINT_LOG("Playing: {}", chord.get_name());
         if (length > 0) {
             std::this_thread::sleep_for(std::chrono::seconds(length));
         } else {
@@ -46,8 +45,16 @@ int main(int argc, char *argv[]) {
 
     if (argc > 1) {
         auto player = std::make_shared<Synthesizer>(5);
+        auto staff = std::make_shared<Staff>();
+
         for (int i = 1; i < argc; ++i) {
-            musicmaker::PlayChord(argv[i], 2, player);
+            staff->Add(PitchBank::FromString(argv[i]));
+        }
+
+        for (auto &it : *staff) {
+            for (auto &notes : it) {
+                musicmaker::PlayChord(notes, 2, player);
+            }
         }
         system("pause");
 
