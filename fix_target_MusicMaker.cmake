@@ -2,7 +2,7 @@ cmake_minimum_required( VERSION 3.17.2 )
 
 project( MusicMaker )
 
-file( GLOB_RECURSE ${PROJECT_NAME}_sources ${CMAKE_CURRENT_LIST_DIR}/src/* )
+file( GLOB_RECURSE ${PROJECT_NAME}_all_sources ${CMAKE_CURRENT_LIST_DIR}/src/* )
 set( root_list_dir ${CMAKE_CURRENT_LIST_DIR} )
 
 function( fix_target_${PROJECT_NAME} )
@@ -13,6 +13,13 @@ function( fix_target_${PROJECT_NAME} )
 
     get_target_property( vendor_sources ${PROJECT_NAME} SOURCES )
     set_source_files_properties( ${PROJECT_NAME} PROPERTIES SOURCES "" )
+
+    set( ${PROJECT_NAME}_sources "" )
+    foreach( source_val ${${PROJECT_NAME}_all_sources} )
+        if( ${source_val} IN_LIST vendor_sources )
+            list( APPEND ${PROJECT_NAME}_sources ${source_val} )
+        endif()
+    endforeach()
     list( REMOVE_ITEM vendor_sources ${${PROJECT_NAME}_sources} )
 
     set( resource_sources
