@@ -9,7 +9,7 @@ public:
     Scale(Note root, Mode mode, int octave = 4);
     ~Scale();
 
-    Pitch FindPitch(int ordinal);
+    Pitch FindPitch(int ordinal) const;
 
 private:
     Pitch root_;

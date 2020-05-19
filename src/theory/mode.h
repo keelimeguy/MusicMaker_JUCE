@@ -5,9 +5,9 @@ public:
     Mode(std::string name, const std::vector<int> &ascending, const std::vector<int> &descending, int octaves = 1);
     Mode(std::string name, const std::vector<int> &ascending);
 
-    std::string get_name() const;
+    const std::string &get_name() const;
 
-    int FindStep(int ordinal);
+    int FindStep(int ordinal) const;
 
     static Mode Ionian;
     static Mode Dorian;

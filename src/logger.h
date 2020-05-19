@@ -9,7 +9,7 @@ class Logger {
 public:
     static void Init();
 
-    static auto &GetCoreLogger() { return core_logger_; }
+    static const auto &GetCoreLogger() { return core_logger_; }
 private:
     static std::shared_ptr<spdlog::logger> core_logger_;
 

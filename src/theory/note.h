@@ -12,7 +12,7 @@ public:
     operator Value() const { return value_; } // Allow switch and comparisons.
     explicit operator bool() = delete; // Prevent usage: if(note)
 
-    std::string get_name() const;
+    const std::string get_name() const;
 
     static Note FromString(std::string);
 

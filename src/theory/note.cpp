@@ -1,6 +1,6 @@
 #include "note.h"
 
-std::string Note::get_name() const {
+const std::string Note::get_name() const {
     switch (value_) {
         case C: return "C";
         case Db: return "Db";

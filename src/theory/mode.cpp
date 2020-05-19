@@ -12,15 +12,15 @@ Mode::Mode(std::string name, const std::vector<int> &ascending)
     std::reverse(descending_.begin(), descending_.end());
 }
 
-std::string Mode::get_name() const {
+const std::string &Mode::get_name() const {
     return name_;
 }
 
-int Mode::FindStep(int ordinal) {
+int Mode::FindStep(int ordinal) const {
     assert(ordinal != 0);
     int step = 0, octave_step = octaves_ * 12;
 
-    std::vector<int> *intervals;
+    const std::vector<int> *intervals;
     if (ordinal > 0) {
         intervals = &ascending_;
     } else {
