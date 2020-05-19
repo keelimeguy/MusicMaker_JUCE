@@ -1,8 +1,7 @@
-#include "Note.h"
-#include "Logger.h"
+#include "note.h"
 
-std::string Note::getName() const {
-    switch (value) {
+std::string Note::get_name() const {
+    switch (value_) {
         case C: return "C";
         case Db: return "Db";
         case D: return "D";
@@ -17,13 +16,13 @@ std::string Note::getName() const {
         case B: return "B";
 
         default:
-            PRINT_CRITICAL("Unknown note value: {}", value);
+            PRINT_CRITICAL("Unknown note value: {}", value_);
             assert(false);
             return "[UNKNOWN_NOTE]";
     }
 }
 
-Note Note::fromString(std::string name) {
+Note Note::FromString(std::string name) {
     if      (name == "C" || name == "B#" || name == "Dbb")  return Note(Value::C);
     else if (name == "Db" || name == "C#" || name == "B##") return Note(Value::Db);
     else if (name == "D" || name == "Ebb" || name == "C##") return Note(Value::D);

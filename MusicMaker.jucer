@@ -12,15 +12,16 @@
     <GROUP id="{00000000-0000-0000-0000-000000000000}" name="src">
       <FILE name="main.cpp" compile="1" resource="0" file="src/main.cpp"/>
       <FILE name="Logger.cpp" compile="1" resource="0" file="src/Logger.cpp"/>
-      <FILE name="MidiSynthesizer.cpp" compile="1" resource="0" file="src/sound/MidiSynthesizer.cpp"/>
-      <FILE name="SineWaveSound.cpp" compile="1" resource="0" file="src/sound/SineWaveSound.cpp"/>
-      <FILE name="SineWaveVoice.cpp" compile="1" resource="0" file="src/sound/SineWaveVoice.cpp"/>
-      <FILE name="SynthAudioSource.cpp" compile="1" resource="0" file="src/sound/SynthAudioSource.cpp"/>
-      <FILE name="Synthesizer.cpp" compile="1" resource="0" file="src/theory/Synthesizer.cpp"/>
-      <FILE name="Mode.cpp" compile="1" resource="0" file="src/theory/Mode.cpp"/>
-      <FILE name="Note.cpp" compile="1" resource="0" file="src/theory/Note.cpp"/>
-      <FILE name="Pitch.cpp" compile="1" resource="0" file="src/theory/Pitch.cpp"/>
-      <FILE name="PitchBank.cpp" compile="1" resource="0" file="src/theory/PitchBank.cpp"/>
+      <FILE name="midi_synthesizer.cpp" compile="1" resource="0" file="src/sound/midi_synthesizer.cpp"/>
+      <FILE name="sine_wave_sound.cpp" compile="1" resource="0" file="src/sound/sine_wave_sound.cpp"/>
+      <FILE name="sine_wave_voice.cpp" compile="1" resource="0" file="src/sound/sine_wave_voice.cpp"/>
+      <FILE name="synth_audio_source.cpp" compile="1" resource="0" file="src/sound/synth_audio_source.cpp"/>
+      <FILE name="synthesizer.cpp" compile="1" resource="0" file="src/theory/synthesizer.cpp"/>
+      <FILE name="mode.cpp" compile="1" resource="0" file="src/theory/mode.cpp"/>
+      <FILE name="note.cpp" compile="1" resource="0" file="src/theory/note.cpp"/>
+      <FILE name="pitch.cpp" compile="1" resource="0" file="src/theory/pitch.cpp"/>
+      <FILE name="pitch_bank.cpp" compile="1" resource="0" file="src/theory/pitch_bank.cpp"/>
+      <FILE name="scale.cpp" compile="1" resource="0" file="src/theory/scale.cpp"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>

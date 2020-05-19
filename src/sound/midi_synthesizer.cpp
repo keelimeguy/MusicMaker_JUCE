@@ -1,7 +1,7 @@
-#include "MidiSynthesizer.h"
+#include "midi_synthesizer.h"
 
 MidiSynthesizer::MidiSynthesizer(int numVoices)
-    : numVoices(numVoices), synthAudioSource(keyboardState, numVoices) {
+    : numVoices_(numVoices), synthAudioSource_(keyboardState_, numVoices) {
     auto xml = juce::parseXML("<DEVICESETUP deviceType=\"DirectSound\" audioOutputDeviceName=\"Primary Sound Driver\"/>");
     setAudioChannels(0, 2, xml.get());
 
@@ -14,16 +14,16 @@ MidiSynthesizer::~MidiSynthesizer() {
 
 void MidiSynthesizer::prepareToPlay(int samplesPerBlockExpected, double sampleRate) {
     PRINT_DEBUG("Preparing to play audio...");
-    synthAudioSource.prepareToPlay(samplesPerBlockExpected, sampleRate);
+    synthAudioSource_.prepareToPlay(samplesPerBlockExpected, sampleRate);
 }
 
 void MidiSynthesizer::releaseResources() {
     PRINT_DEBUG("Releasing audio resources");
-    synthAudioSource.releaseResources();
+    synthAudioSource_.releaseResources();
 }
 
 void MidiSynthesizer::getNextAudioBlock(const juce::AudioSourceChannelInfo &bufferToFill) {
-    synthAudioSource.getNextAudioBlock(bufferToFill);
+    synthAudioSource_.getNextAudioBlock(bufferToFill);
 }
 
 static juce::String getListOfActiveBits(const juce::BigInteger &b) {
@@ -48,8 +48,8 @@ void MidiSynthesizer::dumpDeviceInfo() {
 
     PRINT_LOG("--------------------------------------");
     PRINT_LOG("Current audio device type: " + (deviceManager.getCurrentDeviceTypeObject() != nullptr
-               ? deviceManager.getCurrentDeviceTypeObject()->getTypeName()
-               : "<none>"));
+              ? deviceManager.getCurrentDeviceTypeObject()->getTypeName()
+              : "<none>"));
 
     if (auto *device = deviceManager.getCurrentAudioDevice()) {
         PRINT_LOG("Current audio device: "   + device->getName().quoted());

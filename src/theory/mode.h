@@ -2,40 +2,12 @@
 
 class Mode {
 public:
-    Mode(std::string name, const std::vector<int> &ascending, const std::vector<int> &descending, int octaves = 1)
-        : name(name), ascending(ascending), descending(descending), octaves(octaves) {
-    }
+    Mode(std::string name, const std::vector<int> &ascending, const std::vector<int> &descending, int octaves = 1);
+    Mode(std::string name, const std::vector<int> &ascending);
 
-    Mode(std::string name, const std::vector<int> &ascending)
-        : Mode(name, ascending, ascending) {
-        std::reverse(this->descending.begin(), this->descending.end());
-    }
+    std::string get_name() const;
 
-    std::string getName() { return name; }
-
-    int findStep(int ordinal) {
-        assert(ordinal != 0);
-        int step = 0, octave_step = octaves * 12;
-
-        std::vector<int> *intervals;
-        if (ordinal > 0) {
-            intervals = &ascending;
-        } else {
-            intervals = &descending;
-            ordinal = -ordinal;
-            octave_step = -octave_step;
-            step = -12;
-        }
-
-        if (ordinal > (int)intervals->size()) {
-            step = ((ordinal - 1) / (int)intervals->size()) * octave_step;
-            ordinal = (ordinal - 1) % (int)intervals->size();
-        } else {
-            ordinal--;
-        }
-
-        return step + intervals->at(ordinal);
-    }
+    int FindStep(int ordinal);
 
     static Mode Ionian;
     static Mode Dorian;
@@ -114,7 +86,7 @@ public:
     static Mode Chromatic;
 
 private:
-    std::string name;
-    std::vector<int> ascending, descending;
-    int octaves;
+    std::string name_;
+    std::vector<int> ascending_, descending_;
+    int octaves_;
 };

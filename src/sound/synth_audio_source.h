@@ -12,6 +12,6 @@ public:
     void getNextAudioBlock(const juce::AudioSourceChannelInfo &bufferToFill) override;
 
 private:
-    juce::MidiKeyboardState &keyboardState;
-    juce::Synthesiser synth;
+    juce::MidiKeyboardState &keyboardState_;
+    juce::Synthesiser synth_;
 };

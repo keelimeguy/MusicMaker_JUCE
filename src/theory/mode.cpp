@@ -1,4 +1,44 @@
-#include "Mode.h"
+#include "mode.h"
+
+Mode::Mode(std::string name, const std::vector<int> &ascending, const std::vector<int> &descending, int octaves)
+    : name_(name), ascending_(ascending), descending_(descending), octaves_(octaves) {
+    assert(ascending_.size() <= 128);
+    assert(descending_.size() <= 128);
+    assert(octaves_ <= 11);
+}
+
+Mode::Mode(std::string name, const std::vector<int> &ascending)
+    : Mode(name, ascending, ascending) {
+    std::reverse(descending_.begin(), descending_.end());
+}
+
+std::string Mode::get_name() const {
+    return name_;
+}
+
+int Mode::FindStep(int ordinal) {
+    assert(ordinal != 0);
+    int step = 0, octave_step = octaves_ * 12;
+
+    std::vector<int> *intervals;
+    if (ordinal > 0) {
+        intervals = &ascending_;
+    } else {
+        intervals = &descending_;
+        ordinal = -ordinal;
+        octave_step = -octave_step;
+        step = -12;
+    }
+
+    if (ordinal > (int)intervals->size()) {
+        step = ((ordinal - 1) / (int)intervals->size()) * octave_step;
+        ordinal = (ordinal - 1) % (int)intervals->size();
+    } else {
+        --ordinal;
+    }
+
+    return step + intervals->at(ordinal);
+}
 
 Mode Mode::Ionian("Ionian", { 0, 2, 4, 5, 7, 9, 11 });
 Mode Mode::Dorian("Dorian", { 0, 2, 3, 5, 7, 9, 10 });

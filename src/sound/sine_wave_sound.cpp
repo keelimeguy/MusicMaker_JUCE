@@ -1,4 +1,4 @@
-#include "SineWaveSound.h"
+#include "sine_wave_sound.h"
 
 SineWaveSound::SineWaveSound() {
 }

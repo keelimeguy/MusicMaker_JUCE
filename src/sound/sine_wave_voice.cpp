@@ -1,5 +1,6 @@
-#include "SineWaveVoice.h"
-#include "SineWaveSound.h"
+#include "sine_wave_voice.h"
+
+#include "sine_wave_sound.h"
 
 SineWaveVoice::SineWaveVoice() {
 }
@@ -14,45 +15,45 @@ bool SineWaveVoice::canPlaySound(juce::SynthesiserSound *sound) {
 void SineWaveVoice::startNote(int midiNoteNumber, float velocity,
                               juce::SynthesiserSound *sound,
                               int currentPitchWheelPosition) {
-    currentAngle = 0.0;
-    level = velocity * 0.15;
-    tailOff = 0.0;
+    currentAngle_ = 0.0;
+    level_ = velocity * 0.15;
+    tailOff_ = 0.0;
 
     auto cyclesPerSecond = juce::MidiMessage::getMidiNoteInHertz(midiNoteNumber);
     auto cyclesPerSample = cyclesPerSecond / getSampleRate();
 
-    angleDelta = cyclesPerSample * 2.0 * juce::MathConstants<double>::pi;
+    angleDelta_ = cyclesPerSample * 2.0 * juce::MathConstants<double>::pi;
 }
 
 void SineWaveVoice::renderNextBlock(juce::AudioSampleBuffer &outputBuffer, int startSample, int numSamples) {
-    if (angleDelta != 0.0) {
-        if (tailOff > 0.0) {
+    if (angleDelta_ != 0.0) {
+        if (tailOff_ > 0.0) {
             while (--numSamples >= 0) {
-                auto currentSample = (float)(std::sin(currentAngle) * level * tailOff);
+                auto currentSample = (float)(std::sin(currentAngle_) * level_ * tailOff_);
 
                 for (auto i = outputBuffer.getNumChannels(); --i >= 0;)
                     outputBuffer.addSample(i, startSample, currentSample);
 
-                currentAngle += angleDelta;
+                currentAngle_ += angleDelta_;
                 ++startSample;
 
-                tailOff *= 0.99;
+                tailOff_ *= 0.99;
 
-                if (tailOff <= 0.005) {
+                if (tailOff_ <= 0.005) {
                     clearCurrentNote();
 
-                    angleDelta = 0.0;
+                    angleDelta_ = 0.0;
                     break;
                 }
             }
         } else {
             while (--numSamples >= 0) {
-                auto currentSample = (float)(std::sin(currentAngle) * level);
+                auto currentSample = (float)(std::sin(currentAngle_) * level_);
 
                 for (auto i = outputBuffer.getNumChannels(); --i >= 0;)
                     outputBuffer.addSample(i, startSample, currentSample);
 
-                currentAngle += angleDelta;
+                currentAngle_ += angleDelta_;
                 ++startSample;
             }
         }
@@ -61,11 +62,11 @@ void SineWaveVoice::renderNextBlock(juce::AudioSampleBuffer &outputBuffer, int s
 
 void SineWaveVoice::stopNote(float velocity, bool allowTailOff) {
     if (allowTailOff) {
-        if (tailOff == 0.0)
-            tailOff = 1.0;
+        if (tailOff_ == 0.0)
+            tailOff_ = 1.0;
     } else {
         clearCurrentNote();
-        angleDelta = 0.0;
+        angleDelta_ = 0.0;
     }
 }
 

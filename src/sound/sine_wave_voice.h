@@ -17,8 +17,8 @@ public:
     void controllerMoved(int controllerNumber, int newControllerValue) override;
 
 private:
-    double currentAngle = 0.0;
-    double angleDelta = 0.0;
-    double level = 0.0;
-    double tailOff = 0.0;
+    double currentAngle_ = 0.0;
+    double angleDelta_ = 0.0;
+    double level_ = 0.0;
+    double tailOff_ = 0.0;
 };

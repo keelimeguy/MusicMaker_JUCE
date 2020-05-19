@@ -9,9 +9,11 @@ class Logger {
 public:
     static void Init();
 
-    static std::shared_ptr<spdlog::logger> &GetCoreLogger() { return s_CoreLogger; }
+    static auto &GetCoreLogger() { return core_logger_; }
 private:
-    static std::shared_ptr<spdlog::logger> s_CoreLogger;
+    static std::shared_ptr<spdlog::logger> core_logger_;
+
+    Logger() {}
 };
 
 // Logging macros
